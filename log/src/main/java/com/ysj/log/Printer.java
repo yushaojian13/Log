@@ -28,9 +28,6 @@ final class Printer {
     private static final String BOTTOM_BORDER = BOTTOM_LEFT_CORNER + DOUBLE_DIVIDER + DOUBLE_DIVIDER;
     private static final String MIDDLE_BORDER = MIDDLE_CORNER + SINGLE_DIVIDER + SINGLE_DIVIDER;
 
-    private static final String MESSAGE_EMPTY = "message is empty";
-    private static final String MESSAGE_NULL = "NULL";
-
     private final Settings settings = new Settings();
 
     public Settings getSettings() {
@@ -188,9 +185,8 @@ final class Printer {
         }
 
         if (object == null) {
-            sb.append(MESSAGE_NULL);
+            sb.append("null");
         } else if (TextUtils.isEmpty(object.toString())) {
-            sb.append(MESSAGE_EMPTY);
         } else if (object instanceof JSONObject) {
             JSONObject jsonObject = (JSONObject) object;
             try {

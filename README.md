@@ -28,17 +28,22 @@ L.setLogLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
 
 ```
 // quite simple
-L.d("hello");
+L.i("hello");
 
 // specify a special tag
-L.d("LOG", "hello");
+L.v("LOG", "hello");
 
 // sometimes we just want to see which method was called, without any messages.
 L.d();
 
+L.hideThreadInfo().methodCount(0);
+
 // JSON is printed pretty
-L.d(longJSON);
-L.d(jsonArray);
+L.e(jsonArray);
 
 L.d(list);
+
+L.d(map);
 ```
+
+<img src='https://github.com/yushaojian13/Log/blob/master/screenshots/Log.png'/>

@@ -6,7 +6,7 @@ A more convenient Android log
 build.gradle:
 
 ```
-compile 'com.ysj.log:log:1.0.2'
+compile 'com.ysj.log:log:1.0.3'
 ```
 
 

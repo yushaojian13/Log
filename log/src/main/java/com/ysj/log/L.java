@@ -19,16 +19,20 @@ public class L {
         return printer.getSettings().hideThreadInfo();
     }
 
+    public static Settings hidePositionInfo() {
+        return printer.getSettings().hidePositionInfo();
+    }
+
+    public static Settings hideDivider() {
+        return printer.getSettings().hideDivider();
+    }
+
     public static Settings methodCount(int methodCount) {
         return printer.getSettings().methodCount(methodCount);
     }
 
     public static Settings methodOffset(int offset) {
         return printer.getSettings().methodOffset(offset);
-    }
-
-    public static Settings hidePositionInfo() {
-        return printer.getSettings().hidePositionInfo();
     }
 
     public static Settings setLogLevel(LogLevel level) {

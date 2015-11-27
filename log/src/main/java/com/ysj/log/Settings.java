@@ -6,6 +6,7 @@ public class Settings {
     private String tag = TAG;
     private boolean showThreadInfo = true;
     private boolean showPositionInfo = true;
+    private boolean showDivider = true;
     private int methodCount = 2;
     private int methodOffset = 0;
     private LogLevel logLevel = LogLevel.FULL;
@@ -31,6 +32,12 @@ public class Settings {
 
     public Settings hidePositionInfo() {
         showPositionInfo = false;
+
+        return this;
+    }
+
+    public Settings hideDivider() {
+        showDivider = false;
 
         return this;
     }
@@ -64,16 +71,20 @@ public class Settings {
         return showThreadInfo;
     }
 
+    public boolean isShowPositionInfo() {
+        return showPositionInfo;
+    }
+
+    public boolean isShowDivider() {
+        return showDivider;
+    }
+
     public int getMethodCount() {
         return methodCount;
     }
 
     public int getMethodOffset() {
         return methodOffset;
-    }
-
-    public boolean isShowPositionInfo() {
-        return showPositionInfo;
     }
 
     public LogLevel getLogLevel() {

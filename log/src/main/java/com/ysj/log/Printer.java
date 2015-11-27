@@ -47,10 +47,10 @@ final class Printer {
             tag = settings.getTag();
         }
 
-        int methodCount = getMethodCount();
-
-        logTopBorder(tag, logLevel);
-        logHeaderContent(tag, logLevel, methodCount);
+        if (settings.isShowDivider()) {
+            logTopBorder(tag, logLevel);
+            logHeaderContent(tag, logLevel, getMethodCount());
+        }
 
         String message = createMessage(object);
         byte[] bytes = message.getBytes();
@@ -65,7 +65,9 @@ final class Printer {
             }
         }
 
-        logBottomBorder(tag, logLevel);
+        if (settings.isShowDivider()) {
+            logBottomBorder(tag, logLevel);
+        }
     }
 
     private void logTopBorder(String tag, LogLevel logLevel) {
@@ -123,7 +125,11 @@ final class Printer {
     private void logContent(String tag, LogLevel logLevel, String content) {
         String[] lines = content.split(System.getProperty("line.separator"));
         for (String line : lines) {
-            logChunk(tag, logLevel, HORIZONTAL_DOUBLE_LINE + " " + line);
+            if (settings.isShowDivider()) {
+                logChunk(tag, logLevel, HORIZONTAL_DOUBLE_LINE + " " + line);
+            } else {
+                logChunk(tag, logLevel, line);
+            }
         }
     }
 

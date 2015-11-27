@@ -187,6 +187,8 @@ final class Printer {
         if (object == null) {
             sb.append("null");
         } else if (TextUtils.isEmpty(object.toString())) {
+        } else if (object instanceof Throwable) {
+            sb.append(Log.getStackTraceString((Throwable) object));
         } else if (object instanceof JSONObject) {
             JSONObject jsonObject = (JSONObject) object;
             try {

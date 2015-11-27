@@ -66,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
         L.d(list);
 
+        // print map
         Map map = new HashMap();
         map.put("key1", "value1");
         map.put("key2", "value2");
         L.d(map);
+
+        // print Throwable
+        L.e(new NullPointerException());
     }
 }

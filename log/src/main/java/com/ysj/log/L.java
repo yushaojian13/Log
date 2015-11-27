@@ -27,6 +27,10 @@ public class L {
         return printer.getSettings().hideDivider();
     }
 
+    public static Settings saveToFile(boolean save) {
+        return printer.getSettings().saveToFile(save);
+    }
+
     public static Settings methodCount(int methodCount) {
         return printer.getSettings().methodCount(methodCount);
     }

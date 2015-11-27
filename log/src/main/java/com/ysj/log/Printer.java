@@ -1,5 +1,6 @@
 package com.ysj.log;
 
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -7,6 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -163,6 +167,10 @@ final class Printer {
                 Log.d(tag, chunk);
                 break;
         }
+
+        if (settings.isSaveToFile()) {
+            saveChunk(tag, chunk);
+        }
     }
 
     private String createMessage(Object object) {
@@ -258,5 +266,40 @@ final class Printer {
             }
         }
         return -1;
+    }
+
+    private void saveChunk(String tag, String chunk) {
+        String fileName = Environment.getExternalStorageDirectory()
+                + System.getProperty("file.separator")
+                + tag
+                + ".log";
+
+        File file = new File(fileName);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file, true);
+            fileWriter.write(chunk);
+            fileWriter.write(System.getProperty("line.separator"));
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileWriter != null) {
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

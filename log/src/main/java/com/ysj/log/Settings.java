@@ -7,6 +7,7 @@ public class Settings {
     private boolean showThreadInfo = true;
     private boolean showPositionInfo = true;
     private boolean showDivider = true;
+    private boolean saveToFile = false;
     private int methodCount = 2;
     private int methodOffset = 0;
     private LogLevel logLevel = LogLevel.FULL;
@@ -38,6 +39,12 @@ public class Settings {
 
     public Settings hideDivider() {
         showDivider = false;
+
+        return this;
+    }
+
+    public Settings saveToFile(boolean save) {
+        saveToFile = save;
 
         return this;
     }
@@ -77,6 +84,10 @@ public class Settings {
 
     public boolean isShowDivider() {
         return showDivider;
+    }
+
+    public boolean isSaveToFile() {
+        return saveToFile;
     }
 
     public int getMethodCount() {

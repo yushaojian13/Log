@@ -179,7 +179,7 @@ final class Printer {
     private String createMessage(Object object) {
         StringBuilder sb = new StringBuilder();
 
-        if (settings.isShowPositionInfo()) {
+        if (settings.isShowPositionInfo() && settings.getMethodCount() == 0) {
             StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 
             for (int i = MIN_STACK_OFFSET; i < trace.length; i++) {

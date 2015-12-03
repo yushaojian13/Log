@@ -42,7 +42,10 @@ final class Printer {
         log(settings.getTag(), logLevel, object);
     }
 
-    public void log(String tag, LogLevel logLevel, Object object) {
+    /**
+     * This method is synchronized in order to avoid messy of logs' order.
+     */
+    public synchronized void log(String tag, LogLevel logLevel, Object object) {
         if (logLevel.ordinal() < settings.getLogLevel().ordinal()) {
             return;
         }

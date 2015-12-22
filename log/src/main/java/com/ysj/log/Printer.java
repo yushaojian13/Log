@@ -32,20 +32,31 @@ final class Printer {
     private static final String BOTTOM_BORDER = BOTTOM_LEFT_CORNER + DOUBLE_DIVIDER + DOUBLE_DIVIDER;
     private static final String MIDDLE_BORDER = MIDDLE_CORNER + SINGLE_DIVIDER + SINGLE_DIVIDER;
 
+    /**
+     * Localize single method count and save policy for each thread
+     */
+    private final ThreadLocal<Integer> localMethodCount = new ThreadLocal<>();
+    private final ThreadLocal<Boolean> localSave = new ThreadLocal<>();
+
     private final Settings settings = new Settings();
 
-    public Settings getSettings() {
+    Settings getSettings() {
         return settings;
     }
 
-    public void log(LogLevel logLevel, Object object) {
+    void t(int methodCount, boolean save) {
+        localMethodCount.set(methodCount);
+        localSave.set(save);
+    }
+
+    void log(LogLevel logLevel, Object object) {
         log(settings.getTag(), logLevel, object);
     }
 
     /**
      * This method is synchronized in order to avoid messy of logs' order.
      */
-    public synchronized void log(String tag, LogLevel logLevel, Object object) {
+    synchronized void log(String tag, LogLevel logLevel, Object object) {
         if (logLevel.ordinal() < settings.getLogLevel().ordinal()) {
             return;
         }
@@ -171,7 +182,7 @@ final class Printer {
                 break;
         }
 
-        if (settings.isSaveToFile()) {
+        if (isSaveToFile()) {
             saveChunk(tag, chunk);
         }
     }
@@ -245,6 +256,12 @@ final class Printer {
     }
 
     private int getMethodCount() {
+        Integer count = localMethodCount.get();
+        if (count != null) {
+            localMethodCount.remove();
+            return count;
+        }
+
         int result = settings.getMethodCount();
 
         if (result < 0) {
@@ -252,6 +269,15 @@ final class Printer {
         }
 
         return result;
+    }
+
+    private boolean isSaveToFile() {
+        Boolean save = localSave.get();
+        if (save != null) {
+            return save;
+        }
+
+        return settings.isSaveToFile();
     }
 
     /**

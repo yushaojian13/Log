@@ -43,6 +43,18 @@ public class L {
         return printer.getSettings().setLogLevel(level);
     }
 
+    public static void t(int methodCount) {
+        printer.t(methodCount, printer.getSettings().isSaveToFile());
+    }
+
+    public static void t(boolean save) {
+        printer.t(printer.getSettings().getMethodCount(), save);
+    }
+
+    public static void t(int methodCount, boolean save) {
+        printer.t(methodCount, save);
+    }
+
     public static void v() {
         printer.log(LogLevel.VERBOSE, "");
     }

@@ -3,11 +3,15 @@ package com.ysj.log;
 public class Settings {
     private static final String TAG = "Log";
 
+    public static final String DEFAULT_SAVE_FILENAME = ".log";
+
     private String tag = TAG;
     private boolean showThreadInfo = true;
     private boolean showPositionInfo = true;
     private boolean showDivider = true;
     private boolean saveToFile = false;
+    private String savePath;
+    private String saveFilename;
     private int methodCount = 2;
     private int methodOffset = 0;
     private LogLevel logLevel = LogLevel.FULL;
@@ -49,6 +53,16 @@ public class Settings {
         return this;
     }
 
+    public Settings setSavePath(String savePath) {
+        this.savePath = savePath;
+
+        return this;
+    }
+
+    public void setSaveFilename(String saveFilename) {
+        this.saveFilename = saveFilename;
+    }
+
     public Settings methodCount(int methodCount) {
         if (methodCount < 0) {
             methodCount = 0;
@@ -88,6 +102,14 @@ public class Settings {
 
     public boolean isSaveToFile() {
         return saveToFile;
+    }
+
+    public String getSavePath() {
+        return savePath;
+    }
+
+    public String getSaveFilename() {
+        return saveFilename;
     }
 
     public int getMethodCount() {

@@ -183,7 +183,7 @@ final class Printer {
         }
 
         if (isSaveToFile()) {
-            saveChunk(tag, chunk);
+            saveChunk(chunk);
         }
     }
 
@@ -297,16 +297,30 @@ final class Printer {
         return -1;
     }
 
-    private void saveChunk(String tag, String chunk) {
-        String fileName = Environment.getExternalStorageDirectory()
-                + System.getProperty("file.separator")
-                + tag
-                + ".log";
+    private void saveChunk(String chunk) {
+        String savePath = settings.getSavePath();
 
-        File file = new File(fileName);
+        if (TextUtils.isEmpty(savePath)) {
+            // TODO show a message to users
+            return;
+        }
+
+        String filename = settings.getSaveFilename();
+        if (TextUtils.isEmpty(filename)) {
+            filename = Settings.DEFAULT_SAVE_FILENAME;
+        }
+
+        String filePath = savePath
+                + System.getProperty("file.separator")
+                + filename;
+
+        File file = new File(filePath);
         if (!file.exists()) {
             try {
-                file.createNewFile();
+                boolean result = file.createNewFile();
+                if (!result) {
+                    return; // TODO show a message to users
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 return;

@@ -1,6 +1,7 @@
 package com.ysj.sample;
 
 import android.app.Application;
+import android.support.v4.content.ContextCompat;
 
 import com.ysj.log.L;
 
@@ -12,7 +13,10 @@ public class LOGApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        L.saveToFile(true);
+        L.saveToFile(true)
+         .setSavePath(ContextCompat.getExternalFilesDirs(this, null)[0].getAbsolutePath())
+         .setSaveFilename("Log");
+
 //        L.setTag(getString(R.string.app_name)).hideThreadInfo()
 //                .setLogLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
         /**

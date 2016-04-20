@@ -59,8 +59,10 @@ public class Settings {
         return this;
     }
 
-    public void setSaveFilename(String saveFilename) {
+    public Settings setSaveFilename(String saveFilename) {
         this.saveFilename = saveFilename;
+
+        return this;
     }
 
     public Settings methodCount(int methodCount) {

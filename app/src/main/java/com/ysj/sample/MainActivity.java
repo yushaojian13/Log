@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         L.d("hello");
 
         // specify a special tag
-        L.d("LOG_LOG", "hello");
+        L.d("SingleTag", "hello");
 
         // sometimes we just want to see which method was called, without any messages.
         L.d();
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         L.d(list);
 
         // print map
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<>();
         map.put("key1", "value1");
         map.put("key2", "value2");
         L.d(map);

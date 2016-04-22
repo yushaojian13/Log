@@ -322,7 +322,6 @@ final class Printer {
                     return; // TODO show a message to users
                 }
             } catch (IOException e) {
-                e.printStackTrace();
                 return;
             }
         }

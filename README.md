@@ -2,7 +2,7 @@
 
 修改自 [logger](https://github.com/orhanobut/logger)
 
-<img src='https://github.com/yushaojian13/Log/blob/master/doc/Log.png'/>
+<img src='https://github.com/yushaojian13/Log/blob/master/doc/Log.jpg'/>
 
 ### 特性
 * 极简调用

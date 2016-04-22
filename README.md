@@ -2,6 +2,8 @@
 
 修改自 [logger](https://github.com/orhanobut/logger)
 
+<img src='https://github.com/yushaojian13/Log/blob/master/doc/Log.png'/>
+
 ### 特性
 * 极简调用
 * 花式输出
@@ -40,31 +42,6 @@ L.setTag(getString(R.string.app_name));
 L.hideThreadInfo();
 L.setLogLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
 ```
-
-### 用法
-
-```
-// quite simple
-L.i("hello");
-
-// specify a special tag
-L.v("LOG", "hello");
-
-// sometimes we just want to see which method was called, without any messages.
-L.d();
-
-L.hideThreadInfo().methodCount(0);
-
-// JSON is printed pretty
-L.e(jsonArray);
-
-L.d(list);
-
-L.d(map);
-```
-
-<img src='https://github.com/yushaojian13/Log/blob/master/screenshots/Log.png'/>
-
 
 ### Dependency
 build.gradle:

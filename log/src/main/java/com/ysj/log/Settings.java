@@ -14,7 +14,7 @@ public class Settings {
     private String saveFilename;
     private int methodCount = 2;
     private int methodOffset = 0;
-    private LogLevel logLevel = LogLevel.FULL;
+    private @LogLevel.Level int logLevel = LogLevel.FULL;
 
     public Settings setTag(String tag) {
         if (tag == null) {
@@ -80,7 +80,7 @@ public class Settings {
         return this;
     }
 
-    public Settings setLogLevel(LogLevel level) {
+    public Settings setLogLevel(@LogLevel.Level int  level) {
         logLevel = level;
 
         return this;
@@ -122,7 +122,8 @@ public class Settings {
         return methodOffset;
     }
 
-    public LogLevel getLogLevel() {
+    @LogLevel.Level
+    public int getLogLevel() {
         return logLevel;
     }
 

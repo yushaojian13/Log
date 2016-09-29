@@ -49,15 +49,15 @@ final class Printer {
         localSave.set(save);
     }
 
-    void log(LogLevel logLevel, Object object) {
+    void log(@LogLevel.Level int logLevel, Object object) {
         log(settings.getTag(), logLevel, object);
     }
 
     /**
      * This method is synchronized in order to avoid messy of logs' order.
      */
-    synchronized void log(String tag, LogLevel logLevel, Object object) {
-        if (logLevel.ordinal() < settings.getLogLevel().ordinal()) {
+    synchronized void log(String tag, @LogLevel.Level int logLevel, Object object) {
+        if (logLevel < settings.getLogLevel()) {
             return;
         }
 
@@ -88,23 +88,23 @@ final class Printer {
         }
     }
 
-    private void logTopBorder(String tag, LogLevel logLevel) {
+    private void logTopBorder(String tag, @LogLevel.Level int logLevel) {
         logChunk(tag, logLevel, TOP_BORDER);
     }
 
-    private void logHeaderContent(String tag, LogLevel logLevel, int methodCount) {
+    private void logHeaderContent(String tag, @LogLevel.Level int logLevel, int methodCount) {
         logThread(tag, logLevel);
         logMethod(tag, logLevel, methodCount);
     }
 
-    private void logThread(String tag, LogLevel logLevel) {
+    private void logThread(String tag, @LogLevel.Level int logLevel) {
         if (settings.isShowThreadInfo()) {
             logChunk(tag, logLevel, HORIZONTAL_DOUBLE_LINE + " Thread: " + Thread.currentThread().getName());
             logDivider(tag, logLevel);
         }
     }
 
-    private void logMethod(String tag, LogLevel logLevel, int methodCount) {
+    private void logMethod(String tag, @LogLevel.Level int logLevel, int methodCount) {
         if (methodCount <= 0) {
             return;
         }
@@ -140,7 +140,7 @@ final class Printer {
         logDivider(tag, logLevel);
     }
 
-    private void logContent(String tag, LogLevel logLevel, String content) {
+    private void logContent(String tag, @LogLevel.Level int logLevel, String content) {
         String[] lines = content.split(System.getProperty("line.separator"));
         for (String line : lines) {
             if (settings.isShowDivider()) {
@@ -151,32 +151,32 @@ final class Printer {
         }
     }
 
-    private void logBottomBorder(String tag, LogLevel logLevel) {
+    private void logBottomBorder(String tag, @LogLevel.Level int logLevel) {
         logChunk(tag, logLevel, BOTTOM_BORDER);
     }
 
-    private void logDivider(String tag, LogLevel logLevel) {
+    private void logDivider(String tag, @LogLevel.Level int logLevel) {
         logChunk(tag, logLevel, MIDDLE_BORDER);
     }
 
-    private void logChunk(String tag, LogLevel logLevel, String chunk) {
+    private void logChunk(String tag, @LogLevel.Level int logLevel, String chunk) {
         switch (logLevel) {
-            case ERROR:
+            case LogLevel.ERROR:
                 Log.e(tag, chunk);
                 break;
-            case INFO:
+            case LogLevel.INFO:
                 Log.i(tag, chunk);
                 break;
-            case VERBOSE:
+            case LogLevel.VERBOSE:
                 Log.v(tag, chunk);
                 break;
-            case WARN:
+            case LogLevel.WARN:
                 Log.w(tag, chunk);
                 break;
-            case ASSERT:
+            case LogLevel.ASSERT:
                 Log.wtf(tag, chunk);
                 break;
-            case DEBUG:
+            case LogLevel.DEBUG:
             default:
                 Log.d(tag, chunk);
                 break;

@@ -39,7 +39,7 @@ public class L {
         return printer.getSettings().methodOffset(offset);
     }
 
-    public static Settings setLogLevel(LogLevel level) {
+    public static Settings setLogLevel(@LogLevel.Level int level) {
         return printer.getSettings().setLogLevel(level);
     }
 

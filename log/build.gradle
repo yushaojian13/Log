@@ -2,18 +2,18 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.1.1"
+version = rootProject.ext.logVersionName
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     resourcePrefix "Log"
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 23
-        versionCode 11
-        versionName "1.1.1"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.logVersionCode
+        versionName rootProject.ext.logVersionName
     }
     buildTypes {
         release {
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-annotations:23.3.0'
+    compile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
 }
 
 apply from: 'upload.gradle'

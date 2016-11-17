@@ -3,7 +3,7 @@ package com.ysj.log;
 public class Settings {
     private static final String TAG = "Log";
 
-    public static final String DEFAULT_SAVE_FILENAME = ".log";
+    static final String DEFAULT_SAVE_FILENAME = ".log";
 
     private String tag = TAG;
     private boolean showThreadInfo = true;

@@ -16,4 +16,6 @@
 #   public *;
 #}
 
--keep public class com.ysj.log.** { *; }
+-keep public class com.ysj.log.L { public *; }
+-keep public class com.ysj.log.LogLevel { public *; }
+-keep public class com.ysj.log.Settings { public *; }

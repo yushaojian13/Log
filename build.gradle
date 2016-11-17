@@ -36,6 +36,6 @@ ext {
     supportLibraryVersion = '25.0.1'
 
     // log版本
-    logVersionCode = 13
-    logVersionName = "1.1.13"
+    logVersionCode = 14
+    logVersionName = "1.1.14"
 }

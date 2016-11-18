@@ -15,7 +15,3 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
--keep public class com.ysj.log.L { public *; }
--keep public class com.ysj.log.LogLevel { public *; }
--keep public class com.ysj.log.Settings { public *; }

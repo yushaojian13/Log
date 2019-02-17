@@ -47,5 +47,5 @@ L.setLogLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
 build.gradle:
 
 ```
-compile 'com.ysj.log:log:1.0.9'
+implemention 'com.ysj.log:log:1.2.0'
 ```
